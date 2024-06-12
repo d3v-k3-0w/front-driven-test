@@ -1,0 +1,39 @@
+.mat-card {
+  width: 250px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.mat-subheader {
+  font-size: 20px;
+  color: #343a40;
+  font-weight: bold;
+}
+
+mat-icon[mat-list-icon] {
+  color: #6c757d;
+}
+
+button[mat-list-item] {
+  color: #b1b2b4;
+  position: relative;
+  padding-left: 15px;
+}
+
+button[mat-list-item]:last-child {
+  color: #495057;
+}
+
+button[mat-list-item]:last-child mat-icon[mat-list-icon] {
+  color: #dc3545;
+}
+
+button[mat-list-item].active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: #ffffff;
+}

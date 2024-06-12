@@ -1,0 +1,38 @@
+.profile-card {
+  margin: 10px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-card h1 {
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.profile-info {
+  padding: 10px 0;
+  font-size: 1.1em;
+  color: #fff;
+  text-align: center;
+}
+
+.text-muted {
+  color: #888;
+}
+
+.bootstrap-wrapper {
+  padding: 20px;
+}
+
+.mat-raised-button {
+  margin: 0 40px;
+}

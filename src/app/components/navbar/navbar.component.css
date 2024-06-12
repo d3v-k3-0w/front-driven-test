@@ -1,0 +1,48 @@
+.custom-toolbar {
+  height: 64px; /* Altura por defecto de mat-toolbar */
+  display: flex;
+  align-items: center;
+}
+
+.custom-toolbar .container-fluid {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.custom-toolbar .row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.custom-toolbar .col,
+.custom-toolbar .col-auto {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.custom-toolbar .col {
+  justify-content: center;
+}
+
+.custom-toolbar .navbar-brand {
+  margin-bottom: 0;
+  line-height: 64px; /* Ajustar según la altura de mat-toolbar */
+}
+
+.custom-toolbar button[mat-button] {
+  margin: 0;
+}
+
+.custom-toolbar .ml-1 {
+  margin-left: 8px; /* Espacio entre el texto y el icono */
+}

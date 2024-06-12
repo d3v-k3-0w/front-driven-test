@@ -1,0 +1,11 @@
+<div class="bootstrap-wrapper">
+  <app-navbar [collapsed]="collapsed" />
+  <div class="row">
+    <div class="sidebar" [style.width]="sidenavWidth()">
+      <app-user-sidebar [collapsed2]="collapsed()" />
+    </div>
+    <div class="main-content col-md-9 p-2">
+      <router-outlet />
+    </div>
+  </div>
+</div>

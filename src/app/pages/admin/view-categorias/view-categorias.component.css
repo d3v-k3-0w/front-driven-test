@@ -1,0 +1,39 @@
+.category-card {
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.category-card mat-subheader {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.category-item mat-icon {
+  margin-right: 15px;
+}
+
+.category-item div[mat-line] {
+  font-size: 1.1em;
+}
+
+.category-item div.text-muted {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}

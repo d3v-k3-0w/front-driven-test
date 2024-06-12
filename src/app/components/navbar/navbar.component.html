@@ -1,0 +1,33 @@
+<mat-toolbar class="mat-elevation-z3 custom-toolbar" color="primary">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <button mat-icon-button (click)="toggleCollapsed()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        <a
+          [routerLink]="'/'"
+          mat-icon-button
+          class="text-center"
+          aria-label="Example icon-button with menu icon"
+        >
+          <mat-icon>menu_books</mat-icon>
+        </a>
+        <span class="navbar-brand mb-0 h1">Portal de exámenes</span>
+      </div>
+      <div class="col-auto" *ngIf="loginSrvc.isLoggedIn()">
+        <button
+          mat-button
+          (click)="logOut()"
+          class="text-light"
+          aria-label="Cerrar sesión"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

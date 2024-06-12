@@ -1,0 +1,108 @@
+<mat-card class="add-exam-card">
+  <div class="text-center">
+    <h1>Agregar nuevo examen</h1>
+  </div>
+
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <form (ngSubmit)="guardarCuestionario()">
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Título</mat-label>
+                    <input
+                      type="text"
+                      [(ngModel)]="examenData.titulo"
+                      name="titulo"
+                      placeholder="Digite el título"
+                      required
+                      matInput
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 mt-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Descripción</mat-label>
+                    <textarea
+                      type="text"
+                      [(ngModel)]="examenData.descripcion"
+                      name="descripcion"
+                      placeholder="Digite la descripción"
+                      rows="6"
+                      matInput
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Puntos máximos</mat-label>
+                    <input
+                      type="text"
+                      [(ngModel)]="examenData.puntosMax"
+                      name="puntosMaximos"
+                      placeholder="Digite la cantidad de puntos"
+                      matInput
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>N° de preguntas</mat-label>
+                    <input
+                      type="text"
+                      [(ngModel)]="examenData.numPreguntas"
+                      name="numPreguntas"
+                      placeholder="Digite el número de preguntas"
+                      matInput
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <mat-slide-toggle
+                    [(ngModel)]="examenData.activo"
+                    name="activo"
+                    [checked]="false"
+                    color="primary"
+                  >
+                    Estado de publicación
+                  </mat-slide-toggle>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Categorias</mat-label>
+                    <mat-select
+                      [(ngModel)]="examenData.categoria.idCategoria"
+                      name="categoria"
+                    >
+                      <mat-option
+                        *ngFor="let cat of categorias"
+                        [value]="cat.idCategoria"
+                      >
+                        {{ cat.titulo }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row justify-content-center mt-4">
+                <div class="col-auto">
+                  <button mat-raised-button color="primary">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

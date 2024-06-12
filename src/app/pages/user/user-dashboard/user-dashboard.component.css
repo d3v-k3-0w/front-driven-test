@@ -1,0 +1,20 @@
+:host * {
+  transition: all 500ms ease-in-out;
+}
+
+.bootstrap-wrapper .row {
+  display: flex;
+  justify-content: center;
+  margin-right: 0px;
+  margin-left: 0px;
+  height: calc(100vh - 65px);
+}
+
+.bootstrap-wrapper .sidebar {
+  background-color: #424242;
+  flex-shrink: 0;
+}
+
+.bootstrap-wrapper .main-content {
+  margin: auto;
+}

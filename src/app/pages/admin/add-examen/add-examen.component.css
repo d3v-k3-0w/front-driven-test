@@ -1,0 +1,36 @@
+.add-exam-card {
+  margin: 10px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.add-exam-card h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.bootstrap-wrapper {
+  padding: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-100 {
+  width: 100%;
+}

@@ -1,0 +1,75 @@
+<h1 class="mt20">Preguntas de {{ titulo }}</h1>
+
+<div class="bootstrap-wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container text-center">
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/admin/add-pregunta/{{ idExamen }}/{{ titulo }}"
+        >
+          Agregar Pregunta
+        </button>
+      </div>
+
+      <mat-card *ngFor="let preg of preguntas; let i = index" class="mt20">
+        <mat-card-content>
+          <p>
+            <b>{{ i + 1 }} )</b>
+            <span class="ml20" [innerHTML]="preg.contenido"></span>
+          </p>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  1)<b> {{ preg.opcion1 }}</b>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  2)<b> {{ preg.opcion2 }}</b>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  3)<b> {{ preg.opcion3 }}</b>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  4)<b> {{ preg.opcion4 }}</b>
+                </p>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <p class="mt20">
+              <b>Respuesta correcta: {{ preg.respuesta }}</b>
+            </p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-button
+            (click)="eliminarPregunta(preg.idPregunta)"
+            color="warn"
+          >
+            Eliminar
+          </button>
+          <button
+            mat-button
+            routerLink="/admin/pregunta/{{ preg.idPregunta }}"
+            color="primary"
+          >
+            Actualizar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

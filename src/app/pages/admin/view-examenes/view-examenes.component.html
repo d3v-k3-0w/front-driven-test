@@ -1,0 +1,51 @@
+<mat-card class="mt10" *ngFor="let exmn of examenes">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>
+      {{ exmn.titulo }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ exmn.categoria.titulo }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-flat-button
+        color="primary"
+        routerLink="/admin/ver-preguntas/{{ exmn.idExamen }}/{{ exmn.titulo }}"
+      >
+        Preguntas
+      </button>
+      <button mat-stroked-button color="primary" class="ml20">
+        Puntos máximos {{ exmn.puntosMax }}
+      </button>
+      <button mat-stroked-button color="primary" class="ml20">
+        Preguntas {{ exmn.numPreguntas }}
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="ml20"
+        routerLink="/admin/examen/{{ exmn.idExamen }}"
+      >
+        Actualizar
+      </button>
+      <button mat-flat-button color="primary" class="ml20">Intentos</button>
+      <button
+        mat-flat-button
+        color="warn"
+        class="ml10"
+        (click)="eliminarCuestionario(exmn.idExamen)"
+      >
+        Eliminar
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
+
+<div class="container text-center mt20">
+  <button mat-raised-button color="primary" routerLink="/admin/add-examen">
+    Agregar cuestionario
+  </button>
+</div>
