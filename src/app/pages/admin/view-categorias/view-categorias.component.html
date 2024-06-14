@@ -1,29 +1,46 @@
-<mat-card class="category-card">
-  <div class="container">
-    <mat-list>
-      <div mat-subheader class="text-center">Todas las categorías</div>
-      <mat-divider class="mb20"></mat-divider>
-      <div class="row">
-        <div class="col-12">
-          <mat-list-item *ngFor="let c of categorias" class="category-item">
-            <mat-icon mat-list-icon>category</mat-icon>
-            <div mat-line>{{ c.titulo }}</div>
-            <div mat-line class="text-muted">{{ c.descripcion }}</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card class="global-card">
+        <mat-card-content>
+          <mat-list>
+            <div mat-subheader class="text-center">Todas las Categorías</div>
             <mat-divider></mat-divider>
-          </mat-list-item>
-        </div>
-      </div>
-    </mat-list>
-    <div class="row justify-content-center mt40">
-      <div class="col-auto">
-        <button
-          mat-raised-button
-          color="primary"
-          routerLink="/admin/add-categoria"
-        >
-          Agregar Categoria
-        </button>
-      </div>
+            <div class="row">
+              <div class="col-md-6" *ngFor="let col of [0, 1]">
+                <mat-list-item
+                  *ngFor="
+                    let c of categorias.slice(
+                      col * (categorias.length / 2),
+                      (col + 1) * (categorias.length / 2)
+                    )
+                  "
+                  class="category-item"
+                >
+                  <div class="mr-3">
+                    <mat-icon mat-list-icon>category</mat-icon>
+                  </div>
+                  <div>
+                    <div mat-line>{{ c.titulo }}</div>
+                    <div mat-line class="text-muted">{{ c.descripcion }}</div>
+                  </div>
+                </mat-list-item>
+              </div>
+            </div>
+          </mat-list>
+          <div class="text-center my-2">
+            <div class="col-auto">
+              <button
+                mat-raised-button
+                color="primary"
+                routerLink="/admin/add-categoria"
+              >
+                Agregar Categoría
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
-</mat-card>
+</div>

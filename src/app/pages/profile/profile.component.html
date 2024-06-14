@@ -1,53 +1,59 @@
-<mat-card class="profile-card">
-  <div class="text-center mt-10">
-    <h1>Detalles del perfil</h1>
-  </div>
-
-  <mat-card-content>
-    <div class="bootstrap-wrapper">
-      <div class="container text-center">
-        <div class="row justify-content-center">
-          <div class="col-md-12">
-            <img
-              class="profile-image"
-              src="assets/user-default.jpg"
-              alt="profile"
-            />
-            <h2 class="mt20">{{ user.nombre }} {{ user.apellidos }}</h2>
-            <p class="text-muted">{{ user.lstRoles[0].nombreRol }}</p>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card class="globalCard">
+        <div class="text-center mt-1">
+          <h1>Detalles del perfil</h1>
         </div>
-
-        <div class="row justify-content-center mt20">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="profile-info">
-                  <strong>USUARIO:</strong> {{ user.username }}
-                </div>
-                <div class="profile-info">
-                  <strong>ID:</strong> {{ user.idUsuario }}
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <div class="bootstrap-wrapper">
+            <div class="container text-center">
+              <div class="row justify-content-center">
+                <div class="col-md-12">
+                  <img
+                    class="profile-image"
+                    src="assets/user-default.jpg"
+                    alt="profile"
+                  />
+                  <h2 class="mt20">{{ user.nombre }} {{ user.apellidos }}</h2>
+                  <p class="text-muted">{{ user.lstRoles[0].nombreRol }}</p>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="profile-info">
-                  <strong>TELEFONO:</strong> {{ user.telefono }}
-                </div>
-                <div class="profile-info">
-                  <strong>ESTADO:</strong>
-                  {{ user.enable ? "Activo" : "No Activo" }}
+
+              <div class="row justify-content-center mt20">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="profile-info">
+                        <strong>USUARIO:</strong> {{ user.username }}
+                      </div>
+                      <div class="profile-info">
+                        <strong>ID:</strong> {{ user.idUsuario }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="profile-info">
+                        <strong>TELEFONO:</strong> {{ user.telefono }}
+                      </div>
+                      <div class="profile-info">
+                        <strong>ESTADO:</strong>
+                        {{ user.enable ? "Activo" : "No Activo" }}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="container text-center mt40">
+              <button mat-raised-button class="mr20" color="primary">
+                Actualizar
+              </button>
+              <button mat-raised-button color="accent">Compartir</button>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="container text-center mt40">
-        <button mat-raised-button class="mr20" color="primary">
-          Actualizar
-        </button>
-        <button mat-raised-button color="accent">Compartir</button>
-      </div>
+        </mat-card-content>
+      </mat-card>
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>

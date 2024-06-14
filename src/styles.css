@@ -1,22 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+/*  agregar estilos globales a este archivo y también importar otros archivos de estilo. */
 
+/* variables */
+:root {
+  --spacing-1: 0.625rem; /* 10px */
+  --spacing-2: 1.25rem; /* 20px */
+  --spacing-3: 1.875rem; /* 30px */
+  --spacing-4: 2.5rem; /* 40px */
+  --spacing-5: 3.125rem; /* 50px */
+}
+
+/* universal Box Sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* body and Text Styles */
 html,
 body {
   height: 100%;
   background-color: black;
   color: seashell;
-}
-body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "JetBrains Mono", sans-serif !important;
 }
 
+/* utility Classes */
 .text-center {
   text-align: center;
 }
@@ -25,100 +35,132 @@ body {
   width: 100%;
 }
 
-/* PADDINGS */
+/* padding */
 .p-1 {
-  padding: 10px !important;
+  padding: var(--spacing-1) !important;
 }
 
 .p-2 {
-  padding: 20px !important;
+  padding: var(--spacing-2) !important;
 }
 
 .p-3 {
-  padding: 30px !important;
+  padding: var(--spacing-3) !important;
 }
 
 .p-4 {
-  padding: 40px !important;
+  padding: var(--spacing-4) !important;
 }
 
 .p-5 {
-  padding: 50px !important;
+  padding: var(--spacing-5) !important;
 }
 
 .pt-1 {
-  padding-top: 10px !important;
+  padding-top: var(--spacing-1) !important;
 }
+
 .pb-1 {
-  padding-bottom: 10px !important;
+  padding-bottom: var(--spacing-1) !important;
 }
 
 .pt-2 {
-  padding-top: 20px !important;
+  padding-top: var(--spacing-2) !important;
 }
+
 .pb-2 {
-  padding-bottom: 20px !important;
+  padding-bottom: var(--spacing-2) !important;
 }
 
 .pt-3 {
-  padding-top: 30px !important;
+  padding-top: var(--spacing-3) !important;
 }
+
 .pb-3 {
-  padding-bottom: 30px !important;
+  padding-bottom: var(--spacing-3) !important;
 }
 
-/* MARGINS */
-
-.ml20 {
-  margin-left: 20px !important;
+/* margins */
+.ml-2 {
+  margin-left: var(--spacing-2) !important;
 }
 
-.mr20 {
-  margin-right: 20px !important;
+.mr-2 {
+  margin-right: var(--spacing-2) !important;
 }
 
-.mt-10 {
-  margin-top: 10px !important;
+.mr-1 {
+  margin-right: var(--spacing-1) !important;
 }
 
-.mt-20 {
-  margin-top: 20px !important;
+.mt-1 {
+  margin-top: var(--spacing-1) !important;
 }
 
-.mt40 {
-  margin-top: 40px !important;
+.mt-2 {
+  margin-top: var(--spacing-2) !important;
 }
 
-.mt-30 {
-  margin-top: 30px !important;
+.my-2 {
+  margin-top: var(--spacing-2) !important;
+  margin-bottom: var(--spacing-2) !important;
 }
 
-.mb-20 {
-  margin-bottom: 20px !important;
+.my-1 {
+  margin-top: var(--spacing-1) !important;
+  margin-bottom: var(--spacing-1) !important;
 }
 
-.ml10 {
-  margin-left: 10px !important;
+.mt-1_5 {
+  margin-top: calc(var(--spacing-1) * 1.5) !important; /* 15px */
 }
 
-.mr10 {
-  margin-right: 10px !important;
+.mt-4 {
+  margin-top: var(--spacing-4) !important;
 }
 
-.mb10 {
-  margin-bottom: 10px !important;
+.mt-3 {
+  margin-top: var(--spacing-3) !important;
 }
 
-.ml70 {
-  margin-left: 70px !important;
-}
-.mr70 {
-  margin-right: 70px !important;
+.mb-2 {
+  margin-bottom: var(--spacing-2) !important;
 }
 
-.ml100 {
-  margin-left: 70px !important;
+.ml-1 {
+  margin-left: var(--spacing-1) !important;
 }
-.mr100 {
-  margin-right: 100px !important;
+
+.mr-1 {
+  margin-right: var(--spacing-1) !important;
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-1) !important;
+}
+
+.ml-7 {
+  margin-left: 4.375rem !important; /* 70px */
+}
+
+.mr-7 {
+  margin-right: 4.375rem !important; /* 70px */
+}
+
+.ml-10 {
+  margin-left: 6.25rem !important; /* 100px */
+}
+
+.mr-10 {
+  margin-right: 6.25rem !important; /* 100px */
+}
+
+/* additional Styles */
+.container {
+  padding: var(--spacing-1) !important;
+}
+
+.globalCard {
+  box-shadow: 0 4px 8px rgba(209, 209, 209, 0.32) !important;
+  border-radius: 8px !important;
 }
