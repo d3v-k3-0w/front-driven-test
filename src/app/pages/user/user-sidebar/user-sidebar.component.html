@@ -3,7 +3,7 @@
     <img
       src="/assets/user-default.jpg"
       [width]="profilePicSize()"
-      alt="batman"
+      alt="profile"
       [routerLink]="['/user-dashboard/profile']"
     />
 
@@ -14,49 +14,62 @@
   </div>
 
   <mat-nav-list>
-    <a
-      mat-list-item
-      class="menu-item"
-      *ngFor="let item of menuItems()"
-      [routerLink]="item.route"
-      routerLinkActive="selected-menu-item"
-      #rla="routerLinkActive"
-      [activated]="rla.isActive"
-    >
-      <mat-icon
-        [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'"
-        matListItemIcon
+    <!-- Iteramos sobre todos los elementos: menuItems y categorías combinados -->
+    <ng-container *ngFor="let item of menuItems()">
+      <a
+        mat-list-item
+        class="menu-item"
+        [routerLink]="item.route"
+        routerLinkActive="selected-menu-item"
+        #rla="routerLinkActive"
+        [activated]="rla.isActive"
       >
-        {{ item.icon }}
-      </mat-icon>
-      <span matListItemTitle *ngIf="!sideNavCollapsed()">{{ item.label }}</span>
-    </a>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Categorías </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-nav-list>
-        <a
-          mat-list-item
-          class="menu-item"
-          *ngFor="let categoria of categorias"
-          [routerLink]="['/user-dashboard', categoria.idCategoria]"
-          routerLinkActive="selected-menu-item"
-          #rla="routerLinkActive"
-          [activated]="rla.isActive"
+        <mat-icon
+          [fontSet]="
+            rla.isActive ? 'material-icons' : 'material-icons-outlined'
+          "
+          matListItemIcon
         >
-          <mat-icon
-            [fontSet]="
-              rla.isActive ? 'material-icons' : 'material-icons-outlined'
-            "
-            matListItemIcon
+          {{ item.icon }}
+        </mat-icon>
+        <span matListItemTitle *ngIf="!sideNavCollapsed()">{{
+          item.label
+        }}</span>
+      </a>
+    </ng-container>
+
+    <!-- Renderizar el desplegable de categorías -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="expansion-panel-header">
+        <mat-icon class="expansion-panel-icon">folder</mat-icon>
+        <span class="expansion-panel-title" *ngIf="!sideNavCollapsed()"
+          >Categorías</span
+        >
+      </mat-expansion-panel-header>
+
+      <mat-nav-list>
+        <ng-container *ngFor="let cat of categorias">
+          <a
+            mat-list-item
+            class="menu-item"
+            [routerLink]="['/user-dashboard', cat.idCategoria]"
+            routerLinkActive="selected-menu-item"
+            #rlaCat="routerLinkActive"
+            [activated]="rlaCat.isActive"
           >
-            folder
-          </mat-icon>
-          <span matListItemTitle *ngIf="!sideNavCollapsed()">{{
-            categoria.titulo
-          }}</span>
-        </a>
+            <mat-icon
+              [fontSet]="
+                rlaCat.isActive ? 'material-icons' : 'material-icons-outlined'
+              "
+              matListItemIcon
+            >
+              folder
+            </mat-icon>
+            <span matListItemTitle *ngIf="!sideNavCollapsed()">{{
+              cat.titulo
+            }}</span>
+          </a>
+        </ng-container>
       </mat-nav-list>
     </mat-expansion-panel>
   </mat-nav-list>

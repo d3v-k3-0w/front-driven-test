@@ -32,11 +32,36 @@
 }
 
 .menu-item {
-  border-left: 12px solid;
-  border-left-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  border-left: 12px solid transparent;
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .selected-menu-item {
   border-left-color: #fff;
   background: rgba(255, 255, 255, 0.274);
+}
+
+.selected-menu-item span {
+  color: #25c2f0 !important;
+}
+
+.selected-menu-item mat-icon {
+  color: #000 !important;
+}
+
+.expansion-panel-header {
+  display: flex;
+  align-items: center;
+  padding: 3px 20px;
+}
+
+.expansion-panel-title {
+  display: flex;
+  margin-left: 12px;
+  align-items: center;
 }

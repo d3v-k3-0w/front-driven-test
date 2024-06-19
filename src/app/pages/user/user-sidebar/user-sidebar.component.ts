@@ -15,16 +15,16 @@ export type MenuItem = {
   styleUrls: ['./user-sidebar.component.css'],
 })
 export class UserSidebarComponent {
+  @Input() set collapsed2(val: boolean) {
+    this.sideNavCollapsed.set(val);
+  }
+
+  sideNavCollapsed = signal(false);
+
   categorias: any; //cambiar tipo
 
   username: string | null = null;
   userRole: string | null = null;
-
-  sideNavCollapsed = signal(false);
-
-  @Input() set collapsed2(val: boolean) {
-    this.sideNavCollapsed.set(val);
-  }
 
   profilePicSize = computed(() => (this.sideNavCollapsed() ? '32' : '100'));
 
@@ -60,16 +60,7 @@ export class UserSidebarComponent {
       (data: any) => {
         this.categorias = data;
 
-        this.menuItems.set([
-          ...this.menuItems(),
-          ...this.categorias.map(
-            (cat: { titulo: string; idCategoria: number }) => ({
-              icon: 'folder',
-              label: cat.titulo,
-              route: `/user-dashboard/${cat.idCategoria}`,
-            })
-          ),
-        ]);
+        this.menuItems.set([...this.menuItems()]);
       },
       (err) => {
         this.snack.open('Error al cargar las categorias', '', {

@@ -2,127 +2,124 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
-        <mat-card style="margin-top: 70px">
+        <mat-card class="mt-3">
           <mat-card-content>
-            <h3><b>Intrucciones:</b></h3>
+            <h3><b>Instrucciones:</b></h3>
             <ul>
               <li>
-                No actulize la pagina, de lo contrario obtendrá nuevas preguntas
-                en este cuestionario
+                No actualice la página, de lo contrario obtendrá nuevas
+                preguntas en este cuestionario
               </li>
-              <li>No cambies las pestañas</li>
-              <li>No minimices la ventana</li>
+              <li>No cambie las pestañas</li>
+              <li>No minimice la ventana</li>
             </ul>
           </mat-card-content>
         </mat-card>
       </div>
-
       <div class="col-md-7">
-        <ng-container *ngIf="preguntas">
-          <h1 class="mt20">
+        <ng-container *ngIf="preguntas && preguntas.length">
+          <h1 class="mt-3">
             En curso <b>{{ preguntas[0].examen.titulo }}</b>
           </h1>
         </ng-container>
-
-        <mat-card *ngFor="let preg of preguntas; let i = index">
+        <mat-card
+          class="globalCard"
+          *ngIf="preguntas && preguntas[currentPage]"
+        >
           <mat-card-content>
             <p>
-              <b>{{ i + 1 }}) </b>
-              <span [innerHTML]="preg.contenido"></span>
+              <b>{{ currentPage + 1 }}) </b
+              ><span [innerHTML]="preguntas[currentPage].contenido"></span>
             </p>
             <mat-divider></mat-divider>
-            <div class="row mt20">
-              <div class="col-md-7 mt10">
-                <input
-                  [(ngModel)]="preg.respuestaDada"
-                  type="radio"
-                  [value]="preg.opcion1"
-                  name="{{ i }}"
-                />
-                {{ preg.opcion1 }}
+            <div class="row mt-3">
+              <div
+                class="col-md-12 mt-2"
+                *ngFor="let opcion of preguntas[currentPage].opciones"
+              >
+                <mat-radio-group
+                  [(ngModel)]="preguntas[currentPage].respuestaDada"
+                >
+                  <mat-radio-button [value]="opcion">{{
+                    opcion
+                  }}</mat-radio-button>
+                </mat-radio-group>
               </div>
-              <div class="col-md-7 mt10">
-                <input
-                  [(ngModel)]="preg.respuestaDada"
-                  type="radio"
-                  [value]="preg.opcion2"
-                  name="{{ i }}"
-                />
-                {{ preg.opcion2 }}
-              </div>
-              <div class="col-md-7 mt10">
-                <input
-                  [(ngModel)]="preg.respuestaDada"
-                  type="radio"
-                  [value]="preg.opcion3"
-                  name="{{ i }}"
-                />
-                {{ preg.opcion3 }}
-              </div>
-              <div class="col-md-7 mt10">
-                <input
-                  [(ngModel)]="preg.respuestaDada"
-                  type="radio"
-                  [value]="preg.opcion4"
-                  name="{{ i }}"
-                />
-                {{ preg.opcion4 }}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6"></div>
-              <div class="col-md-6"></div>
             </div>
           </mat-card-content>
         </mat-card>
-
-        <div class="container text-center mt20 mb20">
-          <button mat-raised-button color="primary" (click)="enviarExamen()">
-            Enviar examen
+        <div class="container text-center mt-3 mb-3">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="previousPage()"
+            [disabled]="currentPage === 0"
+          >
+            <mat-icon>arrow_back</mat-icon>
+            Anterior
+          </button>
+          <button
+            mat-raised-button
+            class="mr-1 ml-1"
+            color="primary"
+            (click)="enviarExamen()"
+          >
+            <mat-icon>send</mat-icon>
+            Enviar
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="nextPage()"
+            [disabled]="currentPage === preguntas.length - 1"
+          >
+            Siguiente
+            <mat-icon>arrow_forward</mat-icon>
           </button>
         </div>
       </div>
-
       <div class="col-md-3">
-        <mat-card style="margin-top: 70px">
+        <mat-card class="timer-card mt-3">
           <mat-card-header>
             <mat-card-title>Temporizador</mat-card-title>
-            <mat-card-subtitle>
-              El examen se enviara automaticamente cuando el temporizador llegue
-              a 0:0
-            </mat-card-subtitle>
+            <mat-card-subtitle
+              >se enviará automáticamente cuando el temporizador llegue a
+              0:0</mat-card-subtitle
+            >
           </mat-card-header>
-
           <mat-card-content>
             <h1 class="text-center">{{ obtenerHoraFormateada() }}</h1>
             <mat-spinner
               mode="determinate"
-              style="margin: auto"
-              [value]="(timer / (this.preguntas.length * 2 * 60)) * 100"
-            >
-            </mat-spinner>
+              class="spinner"
+              [value]="(timer / (preguntas.length * 2 * 60)) * 100"
+            ></mat-spinner>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
   </div>
 </div>
-
 <div class="bootstrap-wrapper" *ngIf="isSended">
-  <div class="container mt20">
+  <div class="container mt-3">
     <div class="col-md-6 offset-md-3">
       <mat-card>
-        <mat-card-header>
-          <mat-card-title> Resultado de la prueba </mat-card-title>
-        </mat-card-header>
+        <div class="text-center mt-1">
+          <h1>Detalles del perfil</h1>
+        </div>
 
-        <mat-card-content class="text-center">
-          <h1>Puntos conseguidos : {{ puntosConseguidos }}</h1>
+        <mat-divider></mat-divider>
+        <mat-card-content class="text-center my-2">
+          <h1>Puntos conseguidos: {{ puntosConseguidos }}</h1>
           <h1>Respuestas correctas: {{ respuestasCorrectas }}</h1>
         </mat-card-content>
-
-        <mat-card-actions class="text-center">
-          <button mat-raised-button color="primary" (click)="imprimirPagina()">
+        <div class="container text-center">
+          <button
+            mat-raised-button
+            class="mr-1"
+            color="primary"
+            (click)="imprimirPagina()"
+          >
             Imprimir
           </button>
           <button
@@ -132,7 +129,7 @@
           >
             Inicio
           </button>
-        </mat-card-actions>
+        </div>
       </mat-card>
     </div>
   </div>

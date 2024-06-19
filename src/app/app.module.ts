@@ -25,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
@@ -82,6 +83,7 @@ import { AuthInterceptorProviders } from './share/interceptors/auth.interceptor'
     MatInputModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatRadioModule,
     MatCardModule,
     MatSidenavModule,
     MatToolbarModule,

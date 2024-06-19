@@ -2,7 +2,6 @@ import { LocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PreguntaService } from 'src/app/share/services/pregunta.service';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class StartComponent {
   idExamen: any;
-  preguntas: any;
+  preguntas: any[] = [];
+  currentPage = 0;
   puntosConseguidos = 0;
   respuestasCorrectas = 0;
   intentos = 0;
@@ -28,13 +28,11 @@ export class StartComponent {
   ngOnInit(): void {
     this.prevenirBotonRetroceso();
     this.idExamen = this.route.snapshot.params['idExamen'];
-
-    console.log(this.idExamen);
-
     this.cargarPreguntas();
   }
 
   iniciarTemporizador() {
+    this.timer = this.preguntas.length * 2 * 60;
     let tiempo = window.setInterval(() => {
       if (this.timer <= 0) {
         this.evaluarExamen();
@@ -56,18 +54,14 @@ export class StartComponent {
     this.preguntaSrvc.listarPreguntasDelExamenPrueba(this.idExamen).subscribe(
       (data: any) => {
         console.log(data);
-        this.preguntas = data;
-
-        this.timer = this.preguntas.length * 2 * 60;
-
-        this.preguntas.forEach((preg: any) => {
-          preg['respuestaDada'] = '';
-        });
-        console.log(this.preguntas);
+        this.preguntas = data.map((pregunta: any) => ({
+          ...pregunta,
+          opciones: this.obtenerOpciones(pregunta),
+          respuestaDada: '',
+        }));
         this.iniciarTemporizador();
       },
       (err) => {
-        console.log(err);
         Swal.fire(
           'Error',
           'Error al cargar las preguntas de la prueba',
@@ -94,47 +88,46 @@ export class StartComponent {
   evaluarExamen() {
     this.preguntaSrvc.evaluarExamen(this.preguntas).subscribe(
       (data: any) => {
-        console.log(data);
         this.puntosConseguidos = data.puntosMaximos;
         this.respuestasCorrectas = data.respuestasCorrectas;
         this.intentos = data.intentos;
-
         this.isSended = true;
       },
       (err) => {
         console.log(err);
       }
     );
-
-    /*this.isSended = true;
-
-    this.preguntas.forEach((preg: any) => {
-      if (preg.respuestaDada == preg.respuesta) {
-        this.respuestasCorrectas++;
-        let puntos = this.preguntas[0].examen.puntosMax / this.preguntas.length;
-        this.puntosConseguidos += puntos;
-      }
-
-      if (preg.respuestaDada.trim() != '') {
-        this.intentos++;
-      }
-    });
-
-    console.log('Respuestas correctas: ' + this.respuestasCorrectas);
-    console.log('Puntos conseguidos: ' + this.puntosConseguidos);
-    console.log('Intentos:' + this.intentos);
-
-    console.log(this.preguntas);*/
   }
 
   obtenerHoraFormateada() {
     let minutos = Math.floor(this.timer / 60);
     let segundos = this.timer - minutos * 60;
-
     return `${minutos} : min : ${segundos} seg`;
   }
 
   imprimirPagina() {
     window.print();
+  }
+
+  previousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.preguntas.length - 1) {
+      this.currentPage++;
+    }
+  }
+
+  obtenerOpciones(pregunta: any): string[] {
+    let opciones = [];
+    for (let i = 1; i <= 20; i++) {
+      if (pregunta[`opcion${i}`]) {
+        opciones.push(pregunta[`opcion${i}`]);
+      }
+    }
+    return opciones;
   }
 }
