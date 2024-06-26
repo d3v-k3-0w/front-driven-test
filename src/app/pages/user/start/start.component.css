@@ -4,3 +4,26 @@
   justify-content: center;
   align-items: center;
 }
+
+.respuestas-evaluadas {
+  margin-top: 20px;
+}
+
+.correcta {
+  color: green;
+}
+
+.incorrecta {
+  color: red;
+}
+
+.instructions-card ul {
+  list-style-type: lower-greek;
+  padding-left: 20px; /* Sangría para la lista */
+  text-align: start;
+}
+
+.instructions-card ul li {
+  margin-bottom: 10px;
+  font-size: 1em;
+}

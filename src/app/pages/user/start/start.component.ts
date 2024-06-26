@@ -1,8 +1,9 @@
-import { LocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PreguntaService } from 'src/app/share/services/pregunta.service';
+
 import Swal from 'sweetalert2';
+import { PreguntaService } from 'src/app/share/services/pregunta.service';
 
 @Component({
   selector: 'app-start',
@@ -17,6 +18,7 @@ export class StartComponent {
   respuestasCorrectas = 0;
   intentos = 0;
   isSended = false;
+  respuestasEvaluadas: any[] = [];
   timer: any;
 
   constructor(
@@ -53,7 +55,6 @@ export class StartComponent {
   cargarPreguntas() {
     this.preguntaSrvc.listarPreguntasDelExamenPrueba(this.idExamen).subscribe(
       (data: any) => {
-        console.log(data);
         this.preguntas = data.map((pregunta: any) => ({
           ...pregunta,
           opciones: this.obtenerOpciones(pregunta),
@@ -92,6 +93,22 @@ export class StartComponent {
         this.respuestasCorrectas = data.respuestasCorrectas;
         this.intentos = data.intentos;
         this.isSended = true;
+
+        this.preguntas.forEach((pregunta, index) => {
+          const respuestaEvaluada = {
+            pregunta: pregunta.contenido,
+            respuestaDada: pregunta.respuestaDada
+              ? pregunta.respuestaDada.toLowerCase()
+              : '',
+            respuestaCorrecta: pregunta.respuesta
+              ? pregunta.respuesta.toLowerCase()
+              : '',
+            correcta:
+              pregunta.respuestaDada?.toLowerCase() ===
+              pregunta.respuesta?.toLowerCase(),
+          };
+          this.respuestasEvaluadas.push(respuestaEvaluada);
+        });
       },
       (err) => {
         console.log(err);
