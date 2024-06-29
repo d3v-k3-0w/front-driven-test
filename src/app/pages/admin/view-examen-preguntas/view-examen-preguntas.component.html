@@ -1,4 +1,4 @@
-<h1 class="mt20">Preguntas de {{ titulo }}</h1>
+<h1 class="mt-1">Preguntas de {{ titulo }}</h1>
 
 <div class="bootstrap-wrapper">
   <div class="row">
@@ -13,11 +13,11 @@
         </button>
       </div>
 
-      <mat-card *ngFor="let preg of preguntas; let i = index" class="mt20">
+      <mat-card *ngFor="let preg of preguntas; let i = index" class="my-1">
         <mat-card-content>
           <p>
             <b>{{ i + 1 }} )</b>
-            <span class="ml20" [innerHTML]="preg.contenido"></span>
+            <span class="ml-1" [innerHTML]="preg.contenido"></span>
           </p>
 
           <div class="container-fluid">
@@ -48,7 +48,7 @@
 
             <mat-divider></mat-divider>
 
-            <p class="mt20">
+            <p class="mt-1">
               <b>Respuesta correcta: {{ preg.respuesta }}</b>
             </p>
           </div>

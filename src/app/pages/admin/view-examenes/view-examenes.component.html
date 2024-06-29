@@ -22,27 +22,27 @@
             >
               Preguntas
             </button>
-            <button mat-stroked-button color="primary" class="ml20">
+            <button mat-stroked-button color="primary" class="ml-2">
               Puntos máximos {{ exmn.puntosMax }}
             </button>
-            <button mat-stroked-button color="primary" class="ml20">
+            <button mat-stroked-button color="primary" class="ml-2">
               Preguntas {{ exmn.numPreguntas }}
             </button>
             <button
               mat-flat-button
               color="primary"
-              class="ml20"
+              class="ml-2"
               routerLink="/admin/examen/{{ exmn.idExamen }}"
             >
               Actualizar
             </button>
-            <button mat-flat-button color="primary" class="ml20">
+            <button mat-flat-button color="primary" class="ml-1">
               Intentos
             </button>
             <button
               mat-flat-button
               color="warn"
-              class="ml10"
+              class="ml-1"
               (click)="eliminarCuestionario(exmn.idExamen)"
             >
               Eliminar
